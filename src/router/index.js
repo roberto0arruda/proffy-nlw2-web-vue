@@ -1,14 +1,27 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+
+import Landing from "@/views/Landing";
+import Study from "@/views/TeacherList.vue";
+import GiveClasses from "@/views/TeacherForm.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home
+    name: "Landing",
+    component: Landing
+  },
+  {
+    path: "/study",
+    name: "Study",
+    component: Study
+  },
+  {
+    path: "/give-classes",
+    name: "GiveClasses",
+    component: GiveClasses
   },
   {
     path: "/about",
