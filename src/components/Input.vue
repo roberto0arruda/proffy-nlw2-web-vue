@@ -10,9 +10,9 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class Input extends Vue {
-  @Prop() private label: string;
-  @Prop() private name: string;
-  @Prop({ default: "text" }) private type: string;
+  @Prop() private label!: string;
+  @Prop() private name!: string;
+  @Prop({ default: "text" }) private type!: string;
 }
 </script>
 

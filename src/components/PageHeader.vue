@@ -20,8 +20,8 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class PageHeader extends Vue {
-  @Prop({ required: true }) private title: string;
-  @Prop() private description: string;
+  @Prop({ required: true }) private title!: string;
+  @Prop() private description!: string;
 }
 </script>
 
