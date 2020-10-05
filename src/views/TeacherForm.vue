@@ -9,14 +9,18 @@
       <form action="">
         <fieldset>
           <legend>Seus dados</legend>
-          <input name="name" label="Nome Completo" />
-          <input name="avatar" label="Avatar" />
-          <input name="whatsapp" label="Whatsapp" />
-          <input name="bio" label="Biografia" />
+
+          <Input name="name" label="Nome Completo" />
+          <Input name="avatar" label="Avatar" />
+          <Input name="whatsapp" label="Whatsapp" />
+          <Input name="bio" label="Biografia" />
         </fieldset>
 
         <fieldset>
           <legend>Sobre a aula</legend>
+
+          <Input name="subject" label="Matéria" />
+          <Input name="cost" label="Custo da sua hora por aula" />
         </fieldset>
 
         <fieldset>
@@ -45,14 +49,19 @@
   </div>
 </template>
 
-<script>
-import PageHeader from "@/components/PageHeader";
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
 
-export default {
+import PageHeader from "../components/PageHeader.vue";
+import Input from "../components/Input.vue";
+
+@Component({
   components: {
-    PageHeader
+    PageHeader,
+    Input
   }
-};
+})
+export default class TeacherForm extends Vue {}
 </script>
 
 <style>
@@ -143,13 +152,13 @@ export default {
 }
 
 #page-teacher-form main footer p img {
-  margin-right: 2 rem;
+  margin-right: 2rem;
 }
 
 #page-teacher-form main footer button {
   width: 100%;
   height: 5.6rem;
-  background: var(--color-secundary);
+  background: var(--color-secondary);
   color: var(--color-button-text);
   border: 0;
   border-radius: 0.8rem;
@@ -164,7 +173,7 @@ export default {
 }
 
 #page-teacher-form main footer button:hover {
-  background: var(--color-secundary-dark);
+  background: var(--color-secondary-dark);
 }
 
 @media (min-width: 700px) {

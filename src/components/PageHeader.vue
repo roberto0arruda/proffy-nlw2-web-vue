@@ -9,6 +9,7 @@
 
     <div class="header-content">
       <strong>{{ title }}</strong>
+      <p v-if="description">{{ description }}</p>
       <slot></slot>
     </div>
   </header>
@@ -21,7 +22,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 export default class PageHeader extends Vue {
   @Prop({ required: true }) private title: string;
   @Prop() private description: string;
-  }
+}
 </script>
 
 <style>
@@ -65,6 +66,14 @@ export default class PageHeader extends Vue {
   font: 700 3.6rem Archivo;
   line-height: 4.2rem;
   color: var(--color-title-in-primary);
+}
+
+.page-header .header-content p {
+  max-width: 30rem;
+  font-size: 1.6rem;
+  line-height: 2.6rem;
+  color: var(--color-text-in-primary);
+  margin-top: 2.4rem;
 }
 
 @media (min-width: 700px) {

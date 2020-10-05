@@ -2,20 +2,9 @@
   <div id="page-teacher-list" class="container">
     <PageHeader title="Estes são os proffys disponíveis.">
       <form id="search-teachers">
-        <div class="input-block">
-          <label for="subject">Matéria</label>
-          <input type="text" id="subject" />
-        </div>
-
-        <div class="input-block">
-          <label for="week_day">Dia da Semana</label>
-          <input type="text" id="week_day" />
-        </div>
-
-        <div class="input-block">
-          <label for="time">Hora</label>
-          <input type="text" id="time" />
-        </div>
+        <Input name="subject" label="Matéria" />
+        <Input name="week_day" label="Dia da Semana" />
+        <Input type="time" name="time" label="Hora" />
       </form>
     </PageHeader>
 
@@ -27,16 +16,21 @@
   </div>
 </template>
 
-<script>
-import PageHeader from "@/components/PageHeader";
-import TeacherListItem from "@/components/TeacherListItem";
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
 
-export default {
+import PageHeader from "../components/PageHeader.vue";
+import TeacherListItem from "../components/TeacherListItem.vue";
+import Input from "../components/Input.vue";
+
+@Component({
   components: {
     PageHeader,
-    TeacherListItem
+    TeacherListItem,
+    Input
   }
-};
+})
+export default class TeacherList extends Vue {}
 </script>
 
 <style>
@@ -51,41 +45,6 @@ export default {
 
 #search-teachers label {
   color: var(--color-text-in-primary);
-}
-
-#search-teachers .input-block {
-  position: relative;
-}
-
-#search-teachers .input-block + .input-block {
-  margin-top: 1.4rem;
-}
-
-#search-teachers .input-block label {
-  font-size: 1.4rem;
-}
-
-#search-teachers .input-block input {
-  width: 100%;
-  height: 5.6rem;
-  margin-top: 0.8rem;
-  border-radius: 0.8rem;
-  background: var(--color-input-background);
-  border: 1px solid var(--color-line-in-white);
-  outline: 0;
-  padding: 0 1.6rem;
-  font: 1.6rem Archivo;
-}
-
-#search-teachers .input-block:focus-within::after {
-  width: calc(100% - 3.2rem);
-  height: 2px;
-  content: "";
-  background: var(--color-primary-light);
-  position: absolute;
-  left: 1.6rem;
-  right: 1.6rem;
-  bottom: 0;
 }
 
 #page-teacher-list main {
