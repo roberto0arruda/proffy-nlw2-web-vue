@@ -13,23 +13,55 @@
           <Input name="name" label="Nome Completo" />
           <Input name="avatar" label="Avatar" />
           <Input name="whatsapp" label="Whatsapp" />
-          <Input name="bio" label="Biografia" />
+          <Textarea name="bio" label="Biografia" />
         </fieldset>
 
         <fieldset>
           <legend>Sobre a aula</legend>
 
-          <Input name="subject" label="Matéria" />
+          <Select
+            name="subject"
+            label="Matéria"
+            :options="[
+              { value: 'Artes', label: 'Artes' },
+              { value: 'Biologia', label: 'Biologia' },
+              { value: 'Ciẽncias', label: 'Ciẽncias' },
+              { value: 'Física', label: 'Física' },
+              { value: 'Geografia', label: 'Geografia' }
+            ]"
+          />
           <Input name="cost" label="Custo da sua hora por aula" />
         </fieldset>
 
         <fieldset>
           <legend>
             Horários Disponíveis
-            <button type="button">
+            <button type="button" @click="addNewScheduleItem">
               + Novo Horário
             </button>
           </legend>
+          <div
+            class="schedule-item"
+            v-for="scheduleItem in scheduleItems"
+            :key="scheduleItem.week_day"
+          >
+            <Select
+              name="week_day"
+              label="Dia da Semana"
+              :options="[
+                { value: '0', label: 'Domingo' },
+                { value: '1', label: 'Segunda-feira' },
+                { value: '2', label: 'Terça-feira' },
+                { value: '3', label: 'Quarta-feira' },
+                { value: '4', label: 'Quinta-feira' },
+                { value: '5', label: 'Sexta-feira' },
+                { value: '6', label: 'Sábado' }
+              ]"
+            />
+
+            <Input name="from" label="Das" type="time" />
+            <Input name="to" label="Até" type="time" />
+          </div>
         </fieldset>
 
         <footer>
@@ -54,14 +86,28 @@ import { Component, Vue } from "vue-property-decorator";
 
 import PageHeader from "@/components/PageHeader.vue";
 import Input from "@/components/Input.vue";
+import Textarea from "@/components/Textarea.vue";
+import Select from "@/components/Select.vue";
 
 @Component({
   components: {
     PageHeader,
-    Input
+    Input,
+    Textarea,
+    Select
   }
 })
-export default class TeacherForm extends Vue {}
+export default class TeacherForm extends Vue {
+  scheduleItems: Array<{
+    week_day: number | null;
+    from: string;
+    to: string;
+  }> = [{ week_day: null, from: "", to: "" }];
+
+  addNewScheduleItem() {
+    this.scheduleItems.push({ week_day: null, from: "", to: "" });
+  }
+}
 </script>
 
 <style>
@@ -118,16 +164,8 @@ export default class TeacherForm extends Vue {}
   color: var(--color-primary-dark);
 }
 
-#page-teacher-form
-  main
-  fieldset
-  .input-block
-  + .textarea-block
-  #page-teacher-form
-  main
-  fieldset
-  .select-block
-  + .input-block {
+#page-teacher-form main fieldset .input-block + .textarea-block,
+#page-teacher-form main fieldset .select-block + .input-block {
   margin-top: 2.4rem;
 }
 

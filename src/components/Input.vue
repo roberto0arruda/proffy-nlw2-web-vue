@@ -1,7 +1,7 @@
 <template>
   <div class="input-block">
     <label :for="name">{{ label }}</label>
-    <input :type="type" :id="name" />
+    <input :type="type" :id="name" v-bind="$attrs" />
   </div>
 </template>
 
@@ -10,6 +10,8 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class Input extends Vue {
+  inheritAttrs!: false;
+
   @Prop() private label!: string;
   @Prop() private name!: string;
   @Prop({ default: "text" }) private type!: string;
