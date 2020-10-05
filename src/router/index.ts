@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-import Landing from "@/views/Landing";
+import Landing from "@/views/Landing.vue";
 import Study from "@/views/TeacherList.vue";
 import GiveClasses from "@/views/TeacherForm.vue";
 

@@ -14,16 +14,14 @@
   </header>
 </template>
 
-<script>
-export default {
-  name: "PageHeader",
-  props: {
-    title: {
-      type: String,
-      required: true
-    }
+<script lang="ts">
+import { Component, Prop, Vue } from "vue-property-decorator";
+
+@Component
+export default class PageHeader extends Vue {
+  @Prop({ required: true }) private title: string;
+  @Prop() private description: string;
   }
-};
 </script>
 
 <style>

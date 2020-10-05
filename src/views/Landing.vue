@@ -32,10 +32,11 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "Landing"
-};
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+
+@Component
+export default class Landing extends Vue {}
 </script>
 
 <style>
