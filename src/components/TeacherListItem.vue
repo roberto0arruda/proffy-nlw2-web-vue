@@ -32,10 +32,11 @@
   </article>
 </template>
 
-<script>
-export default {
-  name: "TeacherListItem"
-};
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+
+@Component
+export default class TeacherListItem extends Vue {}
 </script>
 
 <style>

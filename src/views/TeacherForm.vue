@@ -52,8 +52,8 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 
-import PageHeader from "../components/PageHeader.vue";
-import Input from "../components/Input.vue";
+import PageHeader from "@/components/PageHeader.vue";
+import Input from "@/components/Input.vue";
 
 @Component({
   components: {
