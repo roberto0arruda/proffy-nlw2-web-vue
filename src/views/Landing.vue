@@ -25,7 +25,7 @@
       </div>
 
       <span class="total-connections">
-        Total de 200 conexões ja realizadas
+        Total de {{ totalConnections }} conexões ja realizadas
         <img src="@/assets/images/icons/purple-heart.svg" alt="heart" />
       </span>
     </div>
@@ -34,9 +34,18 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import api from "@/services/api";
 
 @Component
-export default class Landing extends Vue {}
+export default class Landing extends Vue {
+  totalConnections = 0;
+
+  created() {
+    api.get("/connections").then(response => {
+      this.totalConnections = response.data.total;
+    });
+  }
+}
 </script>
 
 <style>
