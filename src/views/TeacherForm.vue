@@ -6,7 +6,7 @@
     />
 
     <main>
-      <form action="">
+      <form @submit.prevent="handleCreateClass">
         <fieldset>
           <legend>Seus dados</legend>
 
@@ -26,6 +26,7 @@
           <Select
             name="subject"
             label="Matéria"
+            v-model="teacherForm.subject"
             :options="[
               { value: 'Artes', label: 'Artes' },
               { value: 'Biologia', label: 'Biologia' },
@@ -34,6 +35,7 @@
               { value: 'Geografia', label: 'Geografia' }
             ]"
           />
+
           <Input
             name="cost"
             label="Custo da sua hora por aula"
@@ -48,27 +50,40 @@
               + Novo Horário
             </button>
           </legend>
+
           <div
             class="schedule-item"
-            v-for="scheduleItem in scheduleItems"
-            :key="scheduleItem.week_day"
+            v-for="(scheduleItem, index) in scheduleItems"
+            :key="index"
           >
             <Select
               name="week_day"
               label="Dia da Semana"
+              v-model="scheduleItem.week_day"
               :options="[
-                { value: '0', label: 'Domingo' },
-                { value: '1', label: 'Segunda-feira' },
-                { value: '2', label: 'Terça-feira' },
-                { value: '3', label: 'Quarta-feira' },
-                { value: '4', label: 'Quinta-feira' },
-                { value: '5', label: 'Sexta-feira' },
-                { value: '6', label: 'Sábado' }
+                { value: 0, label: 'Domingo' },
+                { value: 1, label: 'Segunda-feira' },
+                { value: 2, label: 'Terça-feira' },
+                { value: 3, label: 'Quarta-feira' },
+                { value: 4, label: 'Quinta-feira' },
+                { value: 5, label: 'Sexta-feira' },
+                { value: 6, label: 'Sábado' }
               ]"
             />
 
-            <Input name="from" label="Das" type="time" />
-            <Input name="to" label="Até" type="time" />
+            <Input
+              name="from"
+              label="Das"
+              type="time"
+              v-model="scheduleItem.from"
+            />
+
+            <Input
+              name="to"
+              label="Até"
+              type="time"
+              v-model="scheduleItem.to"
+            />
           </div>
         </fieldset>
 
@@ -96,6 +111,7 @@ import PageHeader from "@/components/PageHeader.vue";
 import Input from "@/components/Input.vue";
 import Textarea from "@/components/Textarea.vue";
 import Select from "@/components/Select.vue";
+import api from "@/services/api";
 
 @Component({
   components: {
@@ -117,11 +133,19 @@ export default class TeacherForm extends Vue {
     avatar: "",
     whatsapp: "",
     bio: "",
+    subject: "",
     cost: ""
   };
 
   addNewScheduleItem() {
     this.scheduleItems.push({ week_day: null, from: "", to: "" });
+  }
+
+  handleCreateClass() {
+    api
+      .post("classes", { ...this.teacherForm, schedule: this.scheduleItems })
+      .then(() => alert("Cadastro efetuado com sucesso!"))
+      .catch(() => alert("Erro no cadastro!"));
   }
 }
 </script>

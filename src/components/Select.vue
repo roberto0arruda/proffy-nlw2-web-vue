@@ -1,7 +1,12 @@
 <template>
   <div class="select-block">
     <label :for="name">{{ label }}</label>
-    <select :id="name" v-bind="$attrs">
+    <select
+      :id="name"
+      v-bind="$attrs"
+      :value="value"
+      @change="$emit('input', $event.target.value)"
+    >
       <option value="" disabled selected hidden>Selecione uma opção</option>
       <option v-for="item in options" :key="item.value" :value="item.value">
         {{ item.label }}
@@ -18,6 +23,7 @@ export default class Select extends Vue {
   inheritAttrs!: false;
 
   @Prop() private label!: string;
+  @Prop() private value!: any;
   @Prop() private name!: string;
   @Prop() private options!: Array<{ value: string; label: string }>;
 }
