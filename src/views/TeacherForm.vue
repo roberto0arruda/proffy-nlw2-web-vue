@@ -10,10 +10,14 @@
         <fieldset>
           <legend>Seus dados</legend>
 
-          <Input name="name" label="Nome Completo" />
-          <Input name="avatar" label="Avatar" />
-          <Input name="whatsapp" label="Whatsapp" />
-          <Textarea name="bio" label="Biografia" />
+          <Input name="name" label="Nome Completo" v-model="teacherForm.name" />
+          <Input name="avatar" label="Avatar" v-model="teacherForm.avatar" />
+          <Input
+            name="whatsapp"
+            label="Whatsapp"
+            v-model="teacherForm.whatsapp"
+          />
+          <Textarea name="bio" label="Biografia" v-model="teacherForm.bio" />
         </fieldset>
 
         <fieldset>
@@ -30,7 +34,11 @@
               { value: 'Geografia', label: 'Geografia' }
             ]"
           />
-          <Input name="cost" label="Custo da sua hora por aula" />
+          <Input
+            name="cost"
+            label="Custo da sua hora por aula"
+            v-model="teacherForm.cost"
+          />
         </fieldset>
 
         <fieldset>
@@ -103,6 +111,14 @@ export default class TeacherForm extends Vue {
     from: string;
     to: string;
   }> = [{ week_day: null, from: "", to: "" }];
+
+  private teacherForm: any = {
+    name: "",
+    avatar: "",
+    whatsapp: "",
+    bio: "",
+    cost: ""
+  };
 
   addNewScheduleItem() {
     this.scheduleItems.push({ week_day: null, from: "", to: "" });

@@ -1,7 +1,12 @@
 <template>
   <div class="textarea-block">
     <label :for="name">{{ label }}</label>
-    <textarea :id="name" v-bind="$attrs"></textarea>
+    <textarea
+      :id="name"
+      v-bind="$attrs"
+      :value="value"
+      @input="$emit('input', $event.target.value)"
+    />
   </div>
 </template>
 
@@ -13,6 +18,7 @@ export default class Textarea extends Vue {
   inheritAttrs!: false;
 
   @Prop() private label!: string;
+  @Prop() private value!: any;
   @Prop() private name!: string;
 }
 </script>

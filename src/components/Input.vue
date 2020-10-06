@@ -1,7 +1,13 @@
 <template>
   <div class="input-block">
     <label :for="name">{{ label }}</label>
-    <input :type="type" :id="name" v-bind="$attrs" />
+    <input
+      :type="type"
+      :id="name"
+      v-bind="$attrs"
+      :value="value"
+      @input="$emit('input', $event.target.value)"
+    />
   </div>
 </template>
 
@@ -13,6 +19,7 @@ export default class Input extends Vue {
   inheritAttrs!: false;
 
   @Prop() private label!: string;
+  @Prop() private value!: any;
   @Prop() private name!: string;
   @Prop({ default: "text" }) private type!: string;
 }
