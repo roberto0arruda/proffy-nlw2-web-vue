@@ -144,7 +144,10 @@ export default class TeacherForm extends Vue {
   handleCreateClass() {
     api
       .post("classes", { ...this.teacherForm, schedule: this.scheduleItems })
-      .then(() => alert("Cadastro efetuado com sucesso!"))
+      .then(() => {
+        alert("Cadastro efetuado com sucesso!");
+        this.$router.push("/");
+      })
       .catch(() => alert("Erro no cadastro!"));
   }
 }
