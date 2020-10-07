@@ -128,7 +128,14 @@ export default class TeacherForm extends Vue {
     to: string;
   }> = [{ week_day: null, from: "", to: "" }];
 
-  private teacherForm: any = {
+  private teacherForm: {
+    name: string;
+    avatar: string;
+    whatsapp: string;
+    bio: string;
+    subject: string;
+    cost: string;
+  } = {
     name: "",
     avatar: "",
     whatsapp: "",

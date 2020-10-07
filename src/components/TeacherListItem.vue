@@ -1,28 +1,19 @@
 <template>
   <article class="teacher-item">
     <header>
-      <img
-        src="https://avatars0.githubusercontent.com/u/11306519?s=460&u=0f500de4f52a98468baee823e779838283576024&v=4"
-        alt="Roberto Arruda"
-      />
+      <img :src="teacher.avatar" :alt="teacher.name" />
       <div>
-        <strong>Roberto Arruda</strong>
-        <span>Matemática</span>
+        <strong>{{ teacher.name }}</strong>
+        <span>{{ teacher.subject }}</span>
       </div>
     </header>
 
-    <p>
-      Entusiasta das melhores tecnologias de matemática avançada.
-      <br />
-      <br />
-      Apaixonado pelas melhores tecnicas metemaricas e por mudar a vida das
-      pessoas atravex do calculo.
-    </p>
+    <p>{{ teacher.bio }}</p>
 
     <footer>
       <p>
         Preço/hora
-        <strong>R$ 80,00</strong>
+        <strong>{{ `R$ ${teacher.cost},00` }}</strong>
       </p>
       <button type="button">
         <img src="@/assets/images/icons/whatsapp.svg" alt="contato" />
@@ -33,10 +24,20 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
-export default class TeacherListItem extends Vue {}
+export default class TeacherListItem extends Vue {
+  @Prop() private teacher!: {
+    id: number;
+    avatar: string;
+    bio: string;
+    cost: number;
+    name: string;
+    sbject: string;
+    whatsapp: string;
+  };
+}
 </script>
 
 <style>
