@@ -146,6 +146,11 @@ export default class TeacherList extends Vue {
     bottom: -28px;
   }
 
+  #search-teachers button {
+    width: 25%;
+    margin-top: 2.9rem;
+  }
+
   #search-teachers .input-block + .input-block,
   #search-teachers .select-block + .select-block {
     margin-top: 0;
