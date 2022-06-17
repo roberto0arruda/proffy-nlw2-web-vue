@@ -15,16 +15,18 @@
         Preço/hora
         <strong>{{ `R$ ${teacher.cost},00` }}</strong>
       </p>
-      <button type="button">
-        <img src="@/assets/images/icons/whatsapp.svg" alt="contato" />
+      <a @click="createNewConnection" target="_blank" :href="`https://wa.me/${teacher.whatsapp}?text=proffy`">
+        <img src="@/assets/images/icons/whatsapp.svg" alt="whatsapp" />
         Entrar em contato
-      </button>
+      </a>
     </footer>
   </article>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
+
+import api from "@/services/api";
 
 @Component
 export default class TeacherListItem extends Vue {
@@ -37,6 +39,12 @@ export default class TeacherListItem extends Vue {
     sbject: string;
     whatsapp: string;
   };
+
+  createNewConnection() {
+    api.post('connections', {
+      user_id: this.teacher.id
+    });
+  }
 }
 </script>
 
@@ -99,7 +107,7 @@ export default class TeacherListItem extends Vue {
   display: block;
 }
 
-.teacher-item footer button {
+.teacher-item footer a {
   width: 20rem;
   height: 5.6rem;
   background: var(--color-secondary);
@@ -112,9 +120,10 @@ export default class TeacherListItem extends Vue {
   align-items: center;
   justify-content: space-evenly;
   transition: 0.2s;
+  text-decoration: none;
 }
 
-.teacher-item footer button:hover {
+.teacher-item footer a:hover {
   background: var(--color-secondary-dark);
 }
 
